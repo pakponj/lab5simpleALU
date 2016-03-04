@@ -15,7 +15,7 @@ sc_uint<4> XOR = "0b0010";
 sc_uint<4> AND = "0b0011";
 sc_uint<4> OR = "0b0100";
 sc_uint<4> NOTA = "0b0101";
-sc_uint<4> STL = "0b0110";
+sc_uint<4> SLT = "0b0110";
 
 sc_signal<sc_uint<16> > ain, bin, sum;
 sc_signal<bool> ci, co, oflag, zflag, ltflag/*, op*/;
@@ -52,7 +52,6 @@ int sc_main(int argc, char* argv[])
 	sc_trace(ar, oflag, "oflag");
 	sc_trace(ar, zflag, "zflag");
 	sc_trace(ar, ltflag, "ltflag");
-	//sc_trace(ar, op, "op");
 	sc_trace(ar, opALU, "opALU");
 
 	DUT.ain(ain);                       // Connect ports
@@ -63,7 +62,6 @@ int sc_main(int argc, char* argv[])
 	DUT.oflag(oflag);
 	DUT.zflag(zflag);
 	DUT.ltflag(ltflag);
-	//DUT.op(op);
 	DUT.opALU(opALU);
 	
 	////////////////////Start test cases///////////////////////////
@@ -124,11 +122,11 @@ int sc_main(int argc, char* argv[])
 	sc_start(100, SC_NS);
 	printResult();
 
-	cout << "STL_ALU" << endl;
+	cout << "SLT_ALU" << endl;
 	ain.write("0b0000000000000100");
 	bin.write("0b0000000000000011");
 	ci.write(false);
-	opALU.write(STL);
+	opALU.write(SLT);
 	sc_start(100, SC_NS);
 	printResult();
 

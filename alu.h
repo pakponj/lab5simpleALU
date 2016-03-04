@@ -22,7 +22,7 @@ SC_MODULE(alu) {
 	sc_uint<4> AND = "0b0011";
 	sc_uint<4> OR = "0b0100";
 	sc_uint<4> NOTA = "0b0101";
-	sc_uint<4> STL = "0b0110";
+	sc_uint<4> SLT = "0b0110";
 
 
 	bool co0, co1, co2, co3, co4, co5, co6, co7, co8, co9, co10, co11, co12, co13, co14, co15;
@@ -41,7 +41,9 @@ SC_MODULE(alu) {
 		zflag.write(false);
 		oflag.write(false);
 		ltflag.write(false);
-		
+		sum.write(0);
+
+
 		if (opALU.read() == ADD) 
 			p0(ADD);
 		else if (opALU.read() == SUB)
@@ -54,7 +56,7 @@ SC_MODULE(alu) {
 			p4();
 		else if (opALU.read() == NOTA)
 			p5();
-		else if (opALU.read() == STL)
+		else if (opALU.read() == SLT)
 			p6();
 	}
 	
@@ -120,10 +122,7 @@ SC_MODULE(alu) {
 	void p6()
 	{
 		for (int i = 0; i < 16; i++) {
-			if (ain.read()[i] < bin.read()[i]) {
-				ltflag = true;
-				break;
-			}
+			if (ain.read()[i] ^ bin.read()[i] == 1) ltflag.write(bin.read()[i]);
 		}
 	}
 
