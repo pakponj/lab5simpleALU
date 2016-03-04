@@ -18,7 +18,7 @@ sc_uint<4> NOTA = "0b0101";
 sc_uint<4> SLT = "0b0110";
 
 sc_signal<sc_uint<16> > ain, bin, sum;
-sc_signal<bool> ci, co, oflag, zflag, ltflag/*, op*/;
+sc_signal<bool> ci, co, oflag, zflag, ltflag;
 sc_signal<sc_uint<4> > opALU;
 
 alu DUT("ALU"); 	//Instantiate Device Under .

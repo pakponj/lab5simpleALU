@@ -121,8 +121,10 @@ SC_MODULE(alu) {
 
 	void p6()
 	{
-		for (int i = 0; i < 16; i++) {
-			if (ain.read()[i] ^ bin.read()[i] == 1) ltflag.write(bin.read()[i]);
+		for (int i = 15; i >= 0; i--) {
+			if (( ain.read()[i] ^ bin.read()[i] ) == 1) {
+				ltflag.write(bin.read()[i]); break;
+			}
 		}
 	}
 
